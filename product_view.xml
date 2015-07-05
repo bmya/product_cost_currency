@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    <!-- Product Product Views -->
+        <record id="product_normal_cost_form_view" model="ir.ui.view">
+            <field name="name">product_cost_currency.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field name="arch" type="xml">
+                <field name="standard_price" position="replace">
+                    <field name="standard_price" groups="purchase.group_purchase_manager" />
+                </field>
+                <field name="standard_price" position="after">
+                    <field name="cost_price_currency_id" groups="purchase.group_purchase_manager"/>
+                    <field name="cia_currency_cost_price" groups="purchase.group_purchase_manager"/>
+                </field>
+            </field>
+        </record>
+        <record id="product_cost_currency_tree_view" model="ir.ui.view">
+            <field name="name">product_cost_currency.tree</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view" />
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="standard_price" string="Cost Price" groups="purchase.group_purchase_manager"/>
+                    <field name="cost_price_currency_id" string="Cost Curr" groups="purchase.group_purchase_manager"/>
+                </tree>
+            </field>
+        </record>
+        <record id="product_cost_kanban_view" model="ir.ui.view">
+            <field name="name">product_cost_currency.kanban</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_kanban_view" />
+            <field name="arch" type="xml">
+                <li position="inside">
+                    <br />Product Cost: <field name="cost_price_currency_id" groups="purchase.group_purchase_manager"/>
+                    <field name="standard_price" groups="purchase.group_purchase_manager"/>
+                </li>
+                <li>
+                    <li>Local Curr Cost: <br /><field name="cia_currency_cost_price" groups="purchase.group_purchase_manager"></field></li>
+                </li>
+            </field>
+        </record>
+
+    <!-- Product Template Views -->
+        <record id="product_template_cost_kanban_view" model="ir.ui.view">
+            <field name="name">product_cost_currency.kanban</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_kanban_view" />
+            <field name="arch" type="xml">
+                <li position="inside">
+                    <br />Product Cost: <field name="cost_price_currency_id" groups="purchase.group_purchase_manager"/>
+                    <field name="standard_price" groups="purchase.group_purchase_manager"/>
+                </li>
+                <li>
+                    <li>Local Curr Cost: <br /><field name="cia_currency_cost_price" groups="purchase.group_purchase_manager"></field></li>
+                </li>
+            </field>
+        </record>
+        <record id="product_template_only_cost_form_view" model="ir.ui.view">
+            <field name="name">product_cost_currency.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view" />
+            <field name="arch" type="xml">
+                <field name="standard_price" position="replace">
+                    <field name="standard_price" groups="purchase.group_purchase_manager" />
+                </field>
+                <field name="standard_price" position="after">
+                    <field name="cost_price_currency_id" groups="purchase.group_purchase_manager"/>
+                    <field name="cia_currency_cost_price" groups="purchase.group_purchase_manager"/>
+                </field>
+            </field>
+        </record>
+        <record id="product_template_cost_search_view" model="ir.ui.view">
+            <field name="name">product_cost_currency.search</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view" />
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <field name="cost_price_currency_id" groups="purchase.group_purchase_manager"/>
+                </field>
+            </field>
+        </record>
+        <record id="product_template_cost_tree_view" model="ir.ui.view">
+            <field name="name">product.template.product.tree</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view" />
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="standard_price" string="Cost Price" groups="purchase.group_purchase_manager"/>
+                    <field name="cost_price_currency_id" string="Cost Curr" groups="purchase.group_purchase_manager"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</openerp>
